@@ -1,33 +1,32 @@
--- CriaÁ„o do banco de dados
-
+-- Cria√ß√£o do banco de dados
 create database DA123_Exerc_G06;
 go
 
 use [DA123_Exerc_G06];
 go
 
--- CriaÁ„o das tabelas
+-- Cria√ß√£o das tabelas
 
--- CriaÁ„o da tabela aluno
+-- Cria√ß√£o da tabela aluno
 CREATE TABLE ALUNO (
 	CODALUNO	smallint NOT NULL,
 	NOMEALUNO	varchar(40) NOT NULL,
 	TELEFONE	char(11),
 	EMAIL		varchar(40) NOT NULL,
-	CPF			char(11) NOT NULL,
+	CPF		char(11) NOT NULL,
 	DATANASC	date NOT NULL
 );
 go
 
--- CriaÁ„o da tabela curso
+-- Cria√ß√£o da tabela curso
 CREATE TABLE CURSO (
-	CODCURSO		smallint NOT NULL,
-	NOMECURSO		varchar(40) NOT NULL,
-	TURNO			char(1) NOT NULL
+	CODCURSO	smallint NOT NULL,
+	NOMECURSO	varchar(40) NOT NULL,
+	TURNO		char(1) NOT NULL
 );
 go
 
--- CriaÁ„o da tabela matÈria
+-- Cria√ß√£o da tabela mat√©ria
 CREATE TABLE MATERIA (
 	CODMATERIA		smallint NOT NULL,
 	CODCURSO		smallint NOT NULL,
@@ -36,30 +35,30 @@ CREATE TABLE MATERIA (
 );
 go
 
+-- Cria√ß√£o da tabela matr√≠cula
 CREATE TABLE MATRICULA (
--- CriaÁ„o da tabela matrÌcula
-	CODMATRICULA	smallint NOT NULL,
+	CODMATRICULA		smallint NOT NULL,
 	CODALUNO		smallint NOT NULL,
 	CODMATERIA		smallint NOT NULL,
 	ANOSEMESTRE		smallint NOT NULL,
-	DATAMATRICULA	date NOT NULL
+	DATAMATRICULA		date NOT NULL
 );
 go
 
--- CriaÁ„o da tabela atividade
+-- Cria√ß√£o da tabela atividade
 CREATE TABLE ATIVIDADE (
 	CODATIVIDADE		smallint NOT NULL,
 	CODMATRICULA		smallint NOT NULL,
 	TITULOATIVIDADE		varchar(40) NOT NULL,
-	DESCRICAO			varchar(40),
-	QNTDPONTOS			smallint,
-	DATAHOJE			date NOT NULL,
+	DESCRICAO		varchar(40),
+	QNTDPONTOS		smallint,
+	DATAHOJE		date NOT NULL,
 	DATAENTREGUE		date,
-	DATALIMITE			date NOT NULL
+	DATALIMITE		date NOT NULL
 );
 go
 
--- CriaÁ„o das constraints
+-- Cria√ß√£o das constraints
 
 -- PKs
 ALTER TABLE aluno ADD CONSTRAINT aluno_codaluno_PK PRIMARY KEY (codaluno);
@@ -95,12 +94,12 @@ go
 ALTER TABLE curso ADD CONSTRAINT curso_turno_ck CHECK (turno = 'M' OR turno = 'T' OR turno = 'N');
 go
 
--- DEFAULT
+-- DEFAULTs
 ALTER TABLE atividade ADD CONSTRAINT atividade_datahoje_df DEFAULT (getdate()) FOR datahoje;
 go
 
 -- INSERTs
-INSERT INTO aluno (CODALUNO, NOMEALUNO, TELEFONE, EMAIL, CPF, DATANASC) VALUES (1, 'Jo„o Pedro Andrade Paes Pimentel Barbosa', '31970707070', 'joaopedroandrade@email.com', '12345678900', '2012-12-12');
+INSERT INTO aluno (CODALUNO, NOMEALUNO, TELEFONE, EMAIL, CPF, DATANASC) VALUES (1, 'Jo√£o Pedro Andrade Paes Pimentel Barbosa', '31970707070', 'joaopedroandrade@email.com', '12345678900', '2012-12-12');
 go
 INSERT INTO aluno (CODALUNO, NOMEALUNO, TELEFONE, EMAIL, CPF, DATANASC) VALUES (2, 'Pedro Gabriel Sousa Lopes', '33970707070', 'pedrogabriel@email.com', '98765432100', '2010-10-10');
 go
