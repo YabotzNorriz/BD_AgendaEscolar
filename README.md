@@ -1,6 +1,6 @@
-# Banco de Dados Agenda Escolar
-Repositório do trabalho de banco de dados 1 
+# Banco de Dados - Agenda Escolar
+Repositório do trabalho de Banco de Dados I
 
 ___
 
-Grupo: João Pedro Andrade Paes Pimentel Barbosa, Pedro Gabriel Souza Lopes e Tobias Reis Cassiano.
+Grupo: João Pedro Andrade Paes Pimentel Barbosa, Pedro Gabriel Sousa Lopes e Tobias Reis Cassiano.
