@@ -8,17 +8,17 @@ CREATE TABLE ALUNO (
 	NOMEALUNO	varchar(40) NOT NULL,
 	TELEFONE	int,
 	EMAIL		varchar(40) NOT NULL,
-	CPF			char(11) NOT NULL,
+	CPF		char(11) NOT NULL,
 	DATANASC	date NOT NULL
 );
 go
 
 CREATE TABLE MATRICULA (
-	CODMATRICULA	smallint NOT NULL,
+	CODMATRICULA		smallint NOT NULL,
 	CODALUNO		smallint NOT NULL,
 	CODCURSO		smallint NOT NULL,
 	ANOSEMESTRE		smallint NOT NULL,
-	DATAMATRICULA	date NOT NULL
+	DATAMATRICULA		date NOT NULL
 );
 go
 
@@ -31,7 +31,7 @@ go
 
 CREATE TABLE MATERIA (
 	CODMATERIA		smallint NOT NULL,
-	CODMATRICULA	smallint NOT NULL,
+	CODMATRICULA		smallint NOT NULL,
 	NOMEMATERIA		varchar(40) NOT NULL,
 	PROFESSOR		varchar(40)
 );
@@ -40,16 +40,16 @@ go
 CREATE TABLE ATIVIDADE (
 	CODATIVIDADE		smallint NOT NULL,
 	CODMATRICULA		smallint NOT NULL,
-	CODMATERIA			smallint NOT NULL,
+	CODMATERIA		smallint NOT NULL,
 	TITULOATIVIDADE		varchar(40) NOT NULL,
-	DESCRICAO			varchar(40),
-	QNTDPONTOS			smallint
+	DESCRICAO		varchar(40),
+	QNTDPONTOS		smallint
 );
 go
 
 CREATE TABLE CRONOGRAMA (
-	CODMATRICULA	smallint NOT NULL,
-	CODATIVIDADE	smallint NOT NULL,
+	CODMATRICULA		smallint NOT NULL,
+	CODATIVIDADE		smallint NOT NULL,
 	CODMATERIA		smallint NOT NULL,
 	DATAHOJE		date,
 	DATAENTREGA		date NOT NULL
@@ -58,7 +58,7 @@ go
 
 -- Constraints
 
--- Cria as PKs
+-- PKs
 ALTER TABLE aluno ADD CONSTRAINT aluno_codaluno_PK PRIMARY KEY (codaluno);
 go
 ALTER TABLE curso ADD CONSTRAINT curso_codcurso_PK PRIMARY KEY (codcurso);
@@ -72,7 +72,7 @@ go
 ALTER TABLE cronograma ADD CONSTRAINT cronograma_codmateria_codatividade_PK PRIMARY KEY (codmateria, codatividade);
 go
 
--- Cria as FKs
+-- FKs
 ALTER TABLE matricula ADD CONSTRAINT matricula_codaluno_FK FOREIGN KEY (codaluno) REFERENCES aluno(codaluno);
 go
 ALTER TABLE matricula ADD CONSTRAINT matricula_codcurso_FK FOREIGN KEY (codcurso) REFERENCES curso(codcurso);
