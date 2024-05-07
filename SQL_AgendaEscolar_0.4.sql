@@ -1,19 +1,21 @@
+-- TABLES
+
 CREATE TABLE ALUNO (
 	CODALUNO	smallint NOT NULL,
 	NOMEALUNO	varchar(40) NOT NULL,
 	TELEFONE	int,
 	EMAIL		varchar(40) NOT NULL,
-	CPF			char(11) NOT NULL,
+	CPF		char(11) NOT NULL,
 	DATANASC	date NOT NULL
 );
 go
 
 CREATE TABLE MATRICULA (
-	CODMATRICULA	smallint NOT NULL,
+	CODMATRICULA		smallint NOT NULL,
 	CODALUNO		smallint NOT NULL,
 	CODCURSO		smallint NOT NULL,
 	ANOSEMESTRE		smallint NOT NULL,
-	DATAMATRICULA	date NOT NULL
+	DATAMATRICULA		date NOT NULL
 );
 go
 
@@ -26,7 +28,7 @@ go
 
 CREATE TABLE MATERIA (
 	CODMATERIA		smallint NOT NULL,
-	CODMATRICULA	smallint NOT NULL,
+	CODMATRICULA		smallint NOT NULL,
 	NOMEMATERIA		varchar(40) NOT NULL,
 	PROFESSOR		varchar(40)
 );
@@ -35,23 +37,23 @@ go
 CREATE TABLE ATIVIDADE (
 	CODATIVIDADE		smallint NOT NULL,
 	CODMATRICULA		smallint NOT NULL,
-	CODMATERIA			smallint NOT NULL,
+	CODMATERIA		smallint NOT NULL,
 	TITULOATIVIDADE		varchar(40) NOT NULL,
-	DESCRICAO			varchar(40),
-	QNTDPONTOS			smallint
+	DESCRICAO		varchar(40),
+	QNTDPONTOS		smallint
 );
 go
 
 CREATE TABLE CRONOGRAMA (
-	CODMATRICULA	smallint NOT NULL,
-	CODATIVIDADE	smallint NOT NULL,
+	CODMATRICULA		smallint NOT NULL,
+	CODATIVIDADE		smallint NOT NULL,
 	CODMATERIA		smallint NOT NULL,
 	DATAHOJE		date,
 	DATAENTREGA		date NOT NULL
 );
 go
 
---Constraints
+-- CONSTRAINTS
 
 -- PKs
 ALTER TABLE aluno ADD CONSTRAINT aluno_codaluno_PK PRIMARY KEY (codaluno);
@@ -85,14 +87,13 @@ go
 ALTER TABLE cronograma ADD CONSTRAINT cronograma_codmateria_FK FOREIGN KEY (codmateria) REFERENCES materia(codmateria);
 go
 
-
 -- UNIQUEs
 ALTER TABLE aluno ADD CONSTRAINT aluno_cpf_uq UNIQUE (cpf);
 go
 ALTER TABLE matricula ADD CONSTRAINT matricula_codmatricula_uq UNIQUE (codmatricula);
 go
 
--- CHECK
+-- CHECKs
 ALTER TABLE matricula ADD CONSTRAINT matricula_anosemestre_ck CHECK (anosemestre >= 1);
 go
 ALTER TABLE curso ADD CONSTRAINT curso_turno_ck CHECK (turno = 'M' OR turno = 'T' OR turno = 'N');
